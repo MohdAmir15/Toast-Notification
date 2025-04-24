@@ -5,8 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notification</title>
     <link rel="stylesheet" href="style.css">
+    <!-- adding the script from the fontawesome kit website -->
+    <script src="https://kit.fontawesome.com/c6477bd1f9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div class="buttons">
+        <button onclick="showToast(successMsg)">Success</button>
+        <button onclick="showToast(errorMsg)">Error</button>
+        <button onclick="showToast(invalidMsg)">Invalid</button>
+    </div>  
     
+    <div id="toastBox"></div>
+
+    <script>
+        //var delcarations
+        let toastBox = document.getElementById('toastBox');
+        let successMsg ='<i class="fa-solid fa-circle-check"></i>Successfully submitted';
+        let errorMsg ='<i class="fa-solid fa-circle-xmark"></i>Please fix the error!';
+        let invalidMsg ='<i class="fa-solid fa-circle-exclamation"></i>Invalid input, check again';
+
+        //func to display the noti when the button is clicked
+        function showToast(msg){
+            let toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.innerHTML = msg;
+            toastBox.appendChild(toast);
+
+            if(msg.includes('error')){
+                toast.classList.add('error');
+            }
+            if(msg.includes('Invalid')){
+                toast.classList.add('Invalid');
+            }
+
+            //timer for the noti after 6s
+            setTimeout(() => {
+                toast.remove();
+            },6000);
+        }
+    </script>
+
 </body>
 </html>
